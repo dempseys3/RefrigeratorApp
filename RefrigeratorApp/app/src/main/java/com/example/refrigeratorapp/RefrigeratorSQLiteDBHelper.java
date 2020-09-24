@@ -31,4 +31,17 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + INVENTORY_TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
+
+    public void insertInventory(SQLiteDatabase sqLiteDatabase, String[] data){
+
+        sqLiteDatabase.execSQL("INSERT INTO " + INVENTORY_TABLE_NAME + "( " +
+                data[1] + " , " + data[2] + " , "  + data[3]  + ")"
+        );
+    }
+
+    public String[] getInventory(SQLiteDatabase sqLiteDatabase){
+        String[] data = new String[5];
+        sqLiteDatabase.execSQL("SELECT * FROM " + INVENTORY_TABLE_NAME);
+        return data;
+    }
 }
