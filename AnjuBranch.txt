@@ -3,3 +3,5 @@ Trying to commit to my branch
 
 - In-class activity: commit to master branch
 - Commit 3 per week activity
+
+- Commit activity 
