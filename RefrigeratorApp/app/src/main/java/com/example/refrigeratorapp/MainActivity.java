@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Code to open page with inventory
-    public void openNewActivity(){   Intent intent = new Intent(this, InventoryDisplay.class);
+    public void openNewActivity(){
+        Intent intent = new Intent(this, InventoryDisplay.class);
         startActivity(intent);
-     
-no    }
+    }
 
 }
