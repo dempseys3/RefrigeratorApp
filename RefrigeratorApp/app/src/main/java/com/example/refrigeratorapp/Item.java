@@ -13,7 +13,7 @@ public class Item {
     // Item constructors
     public Item(){
         this.name = "food Item";
-        this.expDate = Calendar.getInstance();
+        this.expDate = Calendar.getFood();
         this.expDate.set(11,11,1111);
     }
 
