@@ -57,7 +57,7 @@ public class submitScene extends AppCompatActivity {
         String name = foodItemBox.getText().toString();
         EditText foodExpBox = findViewById(R.id.foodExpBox);
         String expDate = foodExpBox.getText().toString();
-        if(!name.equals("") && !expDate.equals("")){
+        if(!name.equals("") || !expDate.equals("")){
             addItem(name, expDate);
         }
 
