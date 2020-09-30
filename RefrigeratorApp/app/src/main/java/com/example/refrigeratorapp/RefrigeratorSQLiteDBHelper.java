@@ -37,24 +37,26 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertInventory(SQLiteDatabase sqLiteDatabase, String[] data){
+    public void insertInventory(SQLiteDatabase sqLiteDatabase, InventoryItem data){
 
         sqLiteDatabase.execSQL("INSERT INTO " + INVENTORY_TABLE_NAME + "( " +
-                data[1] + " , " + data[2] + " , "  + data[3]  + ")"
+                data.getProductName() + " , " + data.getCount() + " , "  + data.expiryDate  + ")"
         );
     }
 
-    public List<String> getInventory(){
-        ArrayList<String> data = new ArrayList<String>();
+    public List<InventoryItem> getInventory(){
+        ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + INVENTORY_TABLE_NAME, null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT)));
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_COUNT)));
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE)));
+            String productName = res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT));
+            int count = res.getInt(res.getColumnIndex(INVENTORY_COLUMN_COUNT));
+            String expiryDate = res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE));
+            InventoryItem temp = new InventoryItem(productName, count, expiryDate);
+            data.add(temp);
             res.moveToNext();
         }
         return data;
