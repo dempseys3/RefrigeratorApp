@@ -1,8 +1,13 @@
 package com.example.refrigeratorapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
@@ -39,9 +44,19 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         );
     }
 
-    public String[] getInventory(SQLiteDatabase sqLiteDatabase){
-        String[] data = new String[5];
-        sqLiteDatabase.execSQL("SELECT * FROM " + INVENTORY_TABLE_NAME);
+    public List<String> getInventory(){
+        ArrayList<String> data = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from " + INVENTORY_TABLE_NAME, null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT)));
+            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_COUNT)));
+            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE)));
+            res.moveToNext();
+        }
         return data;
     }
 }
