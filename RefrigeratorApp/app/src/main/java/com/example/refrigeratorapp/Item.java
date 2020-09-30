@@ -13,7 +13,7 @@ public class Item {
     // Item constructors
     public Item(){
         this.name = "food Item";
-        this.expDate = Calendar.getFood();
+        this.expDate = Calendar.getInstance();
         this.expDate.set(11,11,1111);
     }
 
@@ -49,8 +49,8 @@ public class Item {
     // Checks the validity of the date entered so that dateSeparator() gets the correct format
     // Returns 0 if invalid and 1 if valid
     //in progress
-    public boolean dateCheck(Calendar date){
-        return false;
+    public boolean dateCheck(Item item){
+        return true;
     }
 
     // Returns the name of item
