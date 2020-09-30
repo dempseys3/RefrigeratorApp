@@ -16,7 +16,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        this looks important haha
     }
 }
 
