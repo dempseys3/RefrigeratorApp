@@ -64,10 +64,8 @@ public class submitScene extends AppCompatActivity {
         String expDate = foodExpBox.getText().toString();
         TextView textview = findViewById(R.id.textView9);
         if (!name.equals("") && !expDate.equals("")) {
-            if (!name.equals("") || !expDate.equals("")) {
-                addItem(name, expDate);
-                textview.setText(itemArray.size() + " items in fridge");
-            }
+            addItem(name, expDate);
+            textview.setText(itemArray.size() + " items in fridge");
         }
     }
 
