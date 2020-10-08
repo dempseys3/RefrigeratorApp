@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
+    RefrigeratorSQLiteDBHelper myHelper;
     private static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "refrigerator_database";
     public static final String INVENTORY_TABLE_NAME = "inventory";
@@ -37,10 +38,10 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertInventory(SQLiteDatabase sqLiteDatabase, InventoryItem data){
-
+     void insertInventory(InventoryItem data){
+        SQLiteDatabase sqLiteDatabase = myHelper.getWritableDatabase();
         sqLiteDatabase.execSQL("INSERT INTO " + INVENTORY_TABLE_NAME + "( " +
-                data.getProductName() + " , " + data.getCount() + " , "  + data.expiryDate  + ")"
+                data.getProductName() + " , " + data.getCount() + " , "  + data.getExpiryDate()  + ")"
         );
     }
 
