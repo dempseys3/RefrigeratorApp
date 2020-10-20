@@ -45,7 +45,7 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         );
     }
 
-    public List<InventoryItem> getInventory(){
+    public ArrayList<InventoryItem> getInventory(){
         ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
 
         SQLiteDatabase db = this.getReadableDatabase();

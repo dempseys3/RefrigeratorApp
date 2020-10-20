@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class submitScene extends AppCompatActivity {
-    private ArrayList<Item> itemArray = new ArrayList<>();
+    private ArrayList<InventoryItem> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper();
+        itemArray = db.getInventory();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
