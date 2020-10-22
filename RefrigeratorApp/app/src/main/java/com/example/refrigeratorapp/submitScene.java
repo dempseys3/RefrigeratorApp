@@ -1,11 +1,15 @@
 package com.example.refrigeratorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class submitScene extends AppCompatActivity {
+    private fragmentTest fragTest;
     private ArrayList<Item> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,16 @@ public class submitScene extends AppCompatActivity {
         setContentView(R.layout.activity_submit_scene);
 
 
+
+    }
+    public void addPopUp(View view){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction xact = fm.beginTransaction();
+        if(null == fm.findFragmentByTag("AddTag")){
+            xact.add(R.id.fragmentContainer,new AddFragment(), "AddTag").commit();
+        }
+        Button btn = findViewById(R.id.button3);
+        btn.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("SetTextI18n")
@@ -53,20 +68,30 @@ public class submitScene extends AppCompatActivity {
         }
         lastItem.setText("Could not remove item");
     }
+    public void removeFragment(){
+        Fragment frag = getSupportFragmentManager().findFragmentByTag("AddTag");
+        if(frag!=null){
+            getSupportFragmentManager().beginTransaction().remove(frag).commit();
+        }
+        Button btn = findViewById(R.id.button3);
+        btn.setVisibility(View.INVISIBLE);
+    }
 
 
     @SuppressLint("SetTextI18n")
     // Calls addItem()
     public void submit(View view) {
-        EditText foodItemBox = findViewById(R.id.foodItemBox);
+        EditText foodItemBox = findViewById(R.id.nameBox);
         String name = foodItemBox.getText().toString();
-        EditText foodExpBox = findViewById(R.id.foodExpBox);
+        EditText foodExpBox = findViewById(R.id.ExpirationBox);
         String expDate = foodExpBox.getText().toString();
         TextView textview = findViewById(R.id.textView9);
         if (!name.equals("") && !expDate.equals("")) {
             addItem(name, expDate);
             textview.setText(itemArray.size() + " items in fridge");
         }
+        removeFragment();
+        Button btn = findViewById(R.id.button3);
     }
 
     // Displays specified item from itemArray, only used to show that the items are actually stored
