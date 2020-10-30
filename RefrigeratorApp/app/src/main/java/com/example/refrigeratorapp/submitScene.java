@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class submitScene extends AppCompatActivity {
-    private ArrayList<Item> itemArray = new ArrayList<>();
+    private ArrayList<InventoryItem> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper();
+        //itemArray = db.getInventory();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
@@ -27,12 +29,12 @@ public class submitScene extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     // Adds new Item to itemArray and displays success or fail message
-    public void addItem(String name, String expDate){
+    public void addItem(String name, String expDate, int count){
         TextView lastItem = findViewById(R.id.textView3);
        Item test = new Item(name, expDate);
        if(test.dateCheck(test)){
-           itemArray.add(new Item(name,expDate));
-           lastItem.setText(itemArray.get(itemArray.size()-1).getName() + " added to fridge");
+           itemArray.add(new InventoryItem(name,count,expDate));
+           lastItem.setText(itemArray.get(itemArray.size()-1).getProductName() + " added to fridge");
        }
        else{
            lastItem.setText("Invalid date");
@@ -42,12 +44,12 @@ public class submitScene extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     // Removes Item from the itemArray
     // not connected to a button / not used
-    public void removeItem(Item item){
+    public void removeItem(InventoryItem item){
         TextView lastItem = findViewById(R.id.textView3);
         for(int i = 0; i < itemArray.size(); i++){
             if(item.isEqual(itemArray.get(i))){
                 itemArray.remove(i);
-                lastItem.setText(itemArray.get(i).getName() + " was removed");
+                lastItem.setText(itemArray.get(i).getProductName() + " was removed");
                 return;
             }
         }
@@ -64,7 +66,7 @@ public class submitScene extends AppCompatActivity {
         String expDate = foodExpBox.getText().toString();
         TextView textview = findViewById(R.id.textView9);
         if (!name.equals("") && !expDate.equals("")) {
-            addItem(name, expDate);
+            addItem(name, expDate, 1);
             textview.setText(itemArray.size() + " items in fridge");
         }
     }
@@ -79,9 +81,8 @@ public class submitScene extends AppCompatActivity {
         String s = itemNumBox.getText().toString();
         int numOfItem = Integer.parseInt(s);
         if(itemArray.size()>0 && numOfItem<=itemArray.size()-1 && numOfItem>=0){
-            nameView.setText(itemArray.get(numOfItem).getName());
-            exp.setText(itemArray.get(numOfItem).getExpDate().get(Calendar.MONTH) + "/" + itemArray.get(numOfItem).getExpDate().get(Calendar.DAY_OF_MONTH) + "/" +
-                    itemArray.get(numOfItem).getExpDate().get(Calendar.YEAR));
+            nameView.setText(itemArray.get(numOfItem).getProductName());
+            exp.setText(itemArray.get(numOfItem).getExpiryDate());
         }
     }
 

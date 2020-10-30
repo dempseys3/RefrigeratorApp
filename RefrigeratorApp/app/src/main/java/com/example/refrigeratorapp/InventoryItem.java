@@ -24,4 +24,12 @@ public class InventoryItem {
         return expiryDate;
     }
 
+    Boolean isEqual(InventoryItem item){
+        if(this.productName == item.productName && this.expiryDate == item.expiryDate){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
