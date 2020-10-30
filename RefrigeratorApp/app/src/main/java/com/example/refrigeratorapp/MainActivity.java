@@ -1,22 +1,17 @@
 package com.example.refrigeratorapp;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     //not sure how to go from list to array
     private List<String> allItems = new ArrayList<>();
     private ItemAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +57,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
         }
 
-
-
     }
-
 
     // Starts activity in which user can add to and view the contents of the fridge
     public void goToSubmit(View view){

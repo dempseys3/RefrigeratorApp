@@ -22,7 +22,6 @@ public class submitScene extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
-
     }
 
     @SuppressLint("SetTextI18n")

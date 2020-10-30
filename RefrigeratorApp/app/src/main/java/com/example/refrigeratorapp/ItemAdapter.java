@@ -53,5 +53,4 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
         return listItems.size();
     }
 
-
 }
