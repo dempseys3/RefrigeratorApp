@@ -13,3 +13,6 @@ https://stackoverflow.com/questions/9608832/android-communicating-between-two-de
 
 10/29/2020
 I am almost finished with the notification class I have been researching and working on. I got rid of all the errors in the class but I am still not 100% sure how it works so I’m going to fix a few things before committing to my branch. I also have been researching how to get the notification to automatically send when a user’s food item is about to expire. Right now I’m thinking about using the .setWhen() method but I am not sure. 
+
+10/31/2020
+I'm still working on the notification class, working on fixing conflicts on my local machine/ my branch before I commit to Github.
