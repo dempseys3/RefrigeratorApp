@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
+    RefrigeratorSQLiteDBHelper myHelper;
     private static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "refrigerator_database";
     public static final String INVENTORY_TABLE_NAME = "inventory";
@@ -37,24 +38,26 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void insertInventory(SQLiteDatabase sqLiteDatabase, String[] data){
-
+     void insertInventory(InventoryItem data){
+        SQLiteDatabase sqLiteDatabase = myHelper.getWritableDatabase();
         sqLiteDatabase.execSQL("INSERT INTO " + INVENTORY_TABLE_NAME + "( " +
-                data[1] + " , " + data[2] + " , "  + data[3]  + ")"
+                data.getProductName() + " , " + data.getCount() + " , "  + data.getExpiryDate()  + ")"
         );
     }
 
-    public List<String> getInventory(){
-        ArrayList<String> data = new ArrayList<String>();
+    public ArrayList<InventoryItem> getInventory(){
+        ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from " + INVENTORY_TABLE_NAME, null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT)));
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_COUNT)));
-            data.add(res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE)));
+            String productName = res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT));
+            int count = res.getInt(res.getColumnIndex(INVENTORY_COLUMN_COUNT));
+            String expiryDate = res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE));
+            InventoryItem temp = new InventoryItem(productName, count, expiryDate);
+            data.add(temp);
             res.moveToNext();
         }
         return data;
