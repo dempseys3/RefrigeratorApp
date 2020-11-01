@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,16 @@ public class InventoryDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_inventory_display);
 
 
+    }
+
+    public void addPopUp(View view){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction xact = fm.beginTransaction();
+        if(null == fm.findFragmentByTag("AddTag")){
+            xact.add(R.id.fragmentContainer,new AddFragment(), "AddTag").commit();
+        }
+        Button btn = findViewById(R.id.button3);
+        btn.setVisibility(View.VISIBLE);
     }
 
 }

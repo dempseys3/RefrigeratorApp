@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class submitScene extends AppCompatActivity {
-    private fragmentTest fragTest;
     private ArrayList<InventoryItem> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
