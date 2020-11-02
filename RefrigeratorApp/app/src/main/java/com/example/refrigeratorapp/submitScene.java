@@ -3,6 +3,7 @@ package com.example.refrigeratorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,8 +20,9 @@ public class submitScene extends AppCompatActivity {
     private ArrayList<InventoryItem> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper();
-        //itemArray = db.getInventory();
+
+        RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper(getApplicationContext());
+        itemArray = db.getInventory();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
