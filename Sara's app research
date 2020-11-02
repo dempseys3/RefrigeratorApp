@@ -1,0 +1,18 @@
+﻿
+10/28/2020
+I have been researching on how to send notifications to app users so later we can implement sending notifications to users when their food items are about to expire. Through my research I have found that a broadcast receiver might be best to send the notification, however the app user would possibly have to register/ allow notifications to be sent to their device. 
+
+
+Along with researching notifications, I also began lightly researching how to communicate with multiple devices/ app users for our shopping list feature. On the Android Developers website there’s an article on the android.bluetooth class which may be the best way for our app to be able to communicate with multiple users. There is also a way to create a server interface using the internet through the use of Sockets. This may be more reliable than the bluetooth since bluetooth devices need to be in close proximity to each other.
+
+
+https://developer.android.com/reference/android/bluetooth/package-summary
+
+
+https://stackoverflow.com/questions/9608832/android-communicating-between-two-devices
+
+10/29/2020
+I am almost finished with the notification class I have been researching and working on. I got rid of all the errors in the class but I am still not 100% sure how it works so I’m going to fix a few things before committing to my branch. I also have been researching how to get the notification to automatically send when a user’s food item is about to expire. Right now I’m thinking about using the .setWhen() method but I am not sure. 
+
+10/31/2020
+I'm still working on the notification class, working on fixing conflicts on my local machine/ my branch before I commit to Github.
