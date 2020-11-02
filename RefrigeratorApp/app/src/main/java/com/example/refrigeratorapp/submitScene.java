@@ -28,72 +28,70 @@ public class submitScene extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
+    }
+//    //public void addPopUp(View view){
+//        FragmentManager fm = getSupportFragmentManager();
+//        FragmentTransaction xact = fm.beginTransaction();
+//        if(null == fm.findFragmentByTag("AddTag")){
+//            xact.add(R.id.fragmentContainer,new AddFragment(), "AddTag").commit();
+//        }
+//        Button btn = findViewById(R.id.button3);
+//        btn.setVisibility(View.VISIBLE);
+//    }
+//
+//    @SuppressLint("SetTextI18n")
+//    // Adds new Item to itemArray and displays success or fail message
+//    public void addItem(String name, String expDate, int count){
+//        TextView lastItem = findViewById(R.id.textView3);
+//        Item test = new Item(name, expDate);
+//        if(test.dateCheck(test)){
+//           itemArray.add(new InventoryItem(name,count,expDate));
+//           lastItem.setText(itemArray.get(itemArray.size()-1).getProductName() + " added to fridge");
+//        }
+//        else{
+//           lastItem.setText("Invalid date");
+//        }
+//    }
+
+//    @SuppressLint("SetTextI18n")
+//    // Removes Item from the itemArray
+//    // not connected to a button / not used
+//    //public void removeItem(InventoryItem item){
+//        TextView lastItem = findViewById(R.id.textView3);
+//        for(int i = 0; i < itemArray.size(); i++){
+//            if(item.isEqual(itemArray.get(i))){
+//                itemArray.remove(i);
+//                lastItem.setText(itemArray.get(i).getProductName() + " was removed");
+//                return;
+//            }
+//        }
+//        lastItem.setText("Could not remove item");
+//    }
+//   // public void removeFragment(){
+//        Fragment frag = getSupportFragmentManager().findFragmentByTag("AddTag");
+//        if(frag!=null){
+//            getSupportFragmentManager().beginTransaction().remove(frag).commit();
+//        }
+//        Button btn = findViewById(R.id.button3);
+//        btn.setVisibility(View.INVISIBLE);
+//    }
 
 
-    }
-    public void addPopUp(View view){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction xact = fm.beginTransaction();
-        if(null == fm.findFragmentByTag("AddTag")){
-            xact.add(R.id.fragmentContainer,new AddFragment(), "AddTag").commit();
-        }
-        Button btn = findViewById(R.id.button3);
-        btn.setVisibility(View.VISIBLE);
-    }
-
-    @SuppressLint("SetTextI18n")
-    // Adds new Item to itemArray and displays success or fail message
-    public void addItem(String name, String expDate, int count){
-        TextView lastItem = findViewById(R.id.textView3);
-       Item test = new Item(name, expDate);
-       if(test.dateCheck(test)){
-           itemArray.add(new InventoryItem(name,count,expDate));
-           lastItem.setText(itemArray.get(itemArray.size()-1).getProductName() + " added to fridge");
-       }
-       else{
-           lastItem.setText("Invalid date");
-       }
-    }
-
-    @SuppressLint("SetTextI18n")
-    // Removes Item from the itemArray
-    // not connected to a button / not used
-    public void removeItem(InventoryItem item){
-        TextView lastItem = findViewById(R.id.textView3);
-        for(int i = 0; i < itemArray.size(); i++){
-            if(item.isEqual(itemArray.get(i))){
-                itemArray.remove(i);
-                lastItem.setText(itemArray.get(i).getProductName() + " was removed");
-                return;
-            }
-        }
-        lastItem.setText("Could not remove item");
-    }
-    public void removeFragment(){
-        Fragment frag = getSupportFragmentManager().findFragmentByTag("AddTag");
-        if(frag!=null){
-            getSupportFragmentManager().beginTransaction().remove(frag).commit();
-        }
-        Button btn = findViewById(R.id.button3);
-        btn.setVisibility(View.INVISIBLE);
-    }
-
-
-    @SuppressLint("SetTextI18n")
-    // Calls addItem()
-    public void submit(View view) {
-        EditText foodItemBox = findViewById(R.id.nameBox);
-        String name = foodItemBox.getText().toString();
-        EditText foodExpBox = findViewById(R.id.ExpirationBox);
-        String expDate = foodExpBox.getText().toString();
-        TextView textview = findViewById(R.id.textView9);
-        if (!name.equals("") && !expDate.equals("")) {
-            addItem(name, expDate, 1);
-            textview.setText(itemArray.size() + " items in fridge");
-        }
-        removeFragment();
-        Button btn = findViewById(R.id.button3);
-    }
+//    @SuppressLint("SetTextI18n")
+//    // Calls addItem()
+//    //public void submit(View view) {
+//        EditText foodItemBox = findViewById(R.id.nameBox);
+//        String name = foodItemBox.getText().toString();
+//        EditText foodExpBox = findViewById(R.id.ExpirationBox);
+//        String expDate = foodExpBox.getText().toString();
+//        TextView textview = findViewById(R.id.textView9);
+//        if (!name.equals("") && !expDate.equals("")) {
+//            addItem(name, expDate, 1);
+//            textview.setText(itemArray.size() + " items in fridge");
+//        }
+//        removeFragment();
+//        Button btn = findViewById(R.id.button3);
+//    }
 
     // Displays specified item from itemArray, only used to show that the items are actually stored
 
