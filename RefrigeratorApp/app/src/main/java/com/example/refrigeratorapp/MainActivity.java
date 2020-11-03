@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // code create button that displays inventory
         displayButton = (Button) findViewById(R.id.displayButton);
         displayButton.setOnClickListener(new View.OnClickListener() {
@@ -30,3 +29,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    // Starts activity in which user can add to and view the contents of the fridge
+    public void goToSubmit(View view){
+        Intent intent = new Intent(MainActivity.this, submitScene.class);
+        startActivity(intent);
+    }
+
+    //Code to open page with inventory
+    public void openNewActivity(){
+        Intent intent = new Intent(this, InventoryDisplay.class);
+        startActivity(intent);
+    }
+
+
+}
