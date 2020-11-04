@@ -19,3 +19,4 @@ I'm still working on the notification class, working on fixing conflicts on my l
 
 11/4/2020
 I'm working on changing the notification class so that it will send at a specific time that I chose. Later it will be easier to change it to send when a user's item in their inventory is about to expire. 
+https://arifhasnat.com/2016/09/27/android-schedule-notifications-at-specific-time/
