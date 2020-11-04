@@ -84,10 +84,16 @@ public class SubmitManager {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 //    public Calendar stringToDate(){
 //
 //    }
+
     public String dateToString(Calendar c){
         return simpleDateFormat.format(c.getTime());
+    }
+
+    public ArrayList<InventoryItem> getItemArray(){
+        return this.itemArray;
     }
 }
