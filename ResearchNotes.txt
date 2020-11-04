@@ -1,0 +1,6 @@
+What can be used to communicate between phones?
+
+-Firebase with PDF
+-PubNub
+
+I also reached out to Dr.Shepherd for his recommendation
