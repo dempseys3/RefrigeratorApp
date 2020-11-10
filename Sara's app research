@@ -23,3 +23,7 @@ https://arifhasnat.com/2016/09/27/android-schedule-notifications-at-specific-tim
 
 11/8/2020 
 I am still working on sending notifications at a certain time. 
+
+11/9/2020 
+For the first project day I worked on creating a Broadcast Receiver to send custom intents/ send the notifications at a certain time. I am still working on registering the Broadcast
+Reciever and actually setting the time / intents to trigger it to send the notification. 
