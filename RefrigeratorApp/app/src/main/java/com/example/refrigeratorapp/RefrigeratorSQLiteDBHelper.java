@@ -1,6 +1,5 @@
 package com.example.refrigeratorapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
+    RefrigeratorSQLiteDBHelper myHelper;
     private static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "refrigerator_database";
     public static final String INVENTORY_TABLE_NAME = "inventory";
@@ -38,23 +38,14 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-     boolean insertInventory(InventoryItem data){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-         ContentValues cv = new ContentValues();
-         cv.put(INVENTORY_COLUMN_PRODUCT, data.getProductName());
-         cv.put(INVENTORY_COLUMN_COUNT, data.getCount());
-         cv.put(INVENTORY_COLUMN_EXPIRY_DATE, data.getExpiryDate());
-
-         long insert = sqLiteDatabase.insert(INVENTORY_TABLE_NAME, null, cv);
-         if(insert == -1){
-             return false;
-         }else{
-             return true;
-         }
-
+     void insertInventory(InventoryItem data){
+        SQLiteDatabase sqLiteDatabase = myHelper.getWritableDatabase();
+        sqLiteDatabase.execSQL("INSERT INTO " + INVENTORY_TABLE_NAME + "( " +
+                data.getProductName() + " , " + data.getCount() + " , "  + data.getExpiryDate()  + ")"
+        );
     }
 
-    public ArrayList<InventoryItem> getInventory(){
+    public List<InventoryItem> getInventory(){
         ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
 
         SQLiteDatabase db = this.getReadableDatabase();

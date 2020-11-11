@@ -13,6 +13,10 @@ import java.util.ArrayList;
 
 public class InventoryDisplay extends AppCompatActivity {
 
+    private RefrigeratorSQLiteDBHelper refrigeratorDatabase;
+    private ArrayList<Item> allItems = new ArrayList<>();
+    private ItemAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
