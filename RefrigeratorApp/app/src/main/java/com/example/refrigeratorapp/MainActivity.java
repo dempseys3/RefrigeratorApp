@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, submitScene.class);
         startActivity(intent);
     }
-    
+
     //Code to open page with inventory
     public void openNewActivity(){
         Intent intent = new Intent(this, InventoryDisplay.class);
