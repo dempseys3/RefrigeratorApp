@@ -5,6 +5,3 @@ Trying to commit to my branch
 - Commit 3 per week activity
 
 - Commit activity 
-
-Monday Work Day
-- running into issues with inventory display recycler view, working on fixing them
