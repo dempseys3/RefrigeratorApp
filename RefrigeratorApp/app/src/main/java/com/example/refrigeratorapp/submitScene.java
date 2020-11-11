@@ -17,12 +17,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class submitScene extends AppCompatActivity {
-    private ArrayList<InventoryItem> itemArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper(getApplicationContext());
-        itemArray = db.getInventory();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_scene);
 
@@ -33,20 +29,21 @@ public class submitScene extends AppCompatActivity {
     // Adds new Item to itemArray and displays success or fail message
     public void addItem(String name, String expDate, int count){
         TextView lastItem = findViewById(R.id.textView3);
-       Item test = new Item(name, expDate);
-       if(test.dateCheck(test)){
-           itemArray.add(new InventoryItem(name,count,expDate));
-           lastItem.setText(itemArray.get(itemArray.size()-1).getProductName() + " added to fridge");
+       InventoryItem test = new InventoryItem(name, count, expDate);
+       RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper(submitScene.this);
+       Boolean successful = db.insertInventory(test);
+       if(successful == true) {
+           lastItem.setText(test.getProductName() + " added to fridge");
+       }else{
+           lastItem.setText("Failed to add item");
        }
-       else{
-           lastItem.setText("Invalid date");
-       }
+
     }
 
-    @SuppressLint("SetTextI18n")
+    //@SuppressLint("SetTextI18n")
     // Removes Item from the itemArray
     // not connected to a button / not used
-    public void removeItem(InventoryItem item){
+    /*public void removeItem(InventoryItem item){
         TextView lastItem = findViewById(R.id.textView3);
         for(int i = 0; i < itemArray.size(); i++){
             if(item.isEqual(itemArray.get(i))){
@@ -56,7 +53,7 @@ public class submitScene extends AppCompatActivity {
             }
         }
         lastItem.setText("Could not remove item");
-    }
+    }*/
 
 
     @SuppressLint("SetTextI18n")
@@ -66,16 +63,16 @@ public class submitScene extends AppCompatActivity {
         String name = foodItemBox.getText().toString();
         EditText foodExpBox = findViewById(R.id.foodExpBox);
         String expDate = foodExpBox.getText().toString();
-        TextView textview = findViewById(R.id.textView9);
+        //TextView textview = findViewById(R.id.textView9);
         if (!name.equals("") && !expDate.equals("")) {
             addItem(name, expDate, 1);
-            textview.setText(itemArray.size() + " items in fridge");
+            //textview.setText(itemArray.size() + " items in fridge");
         }
     }
 
     // Displays specified item from itemArray, only used to show that the items are actually stored
 
-    @SuppressLint("SetTextI18n")
+   /* @SuppressLint("SetTextI18n")
     public void showItem(View view){
         EditText itemNumBox = findViewById(R.id.itemNumBox);
         TextView nameView = findViewById(R.id.nameTextView);
@@ -86,7 +83,7 @@ public class submitScene extends AppCompatActivity {
             nameView.setText(itemArray.get(numOfItem).getProductName());
             exp.setText(itemArray.get(numOfItem).getExpiryDate());
         }
-    }
+    }*/
 
     // Pressing the back button returns user to Main Activity
     public void goToMain(View view){
