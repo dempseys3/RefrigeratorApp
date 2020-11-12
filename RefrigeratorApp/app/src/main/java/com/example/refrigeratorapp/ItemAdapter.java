@@ -21,11 +21,11 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     @NonNull
     private Context context;
-    private List<InventoryItem> listItems;
-    private List<InventoryItem> mArrayList;
+    private ArrayList<InventoryItem> listItems;
+    private ArrayList<InventoryItem> mArrayList;
     private RefrigeratorSQLiteDBHelper refrigeratorDatabase;
 
-    public ItemAdapter(Context context, List<InventoryItem> listItems) {
+    public ItemAdapter(Context context, ArrayList<InventoryItem> listItems) {
         this.context = context;
         this.listItems = listItems;
         this.mArrayList=listItems;

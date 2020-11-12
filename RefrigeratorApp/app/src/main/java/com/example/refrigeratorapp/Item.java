@@ -55,10 +55,8 @@ public class Item {
 
     // Returns the name of item
     public String getName(){
-
         return this.name;
     }
-
 
     // Returns the expiration date of item
     public Calendar getExpDate() {

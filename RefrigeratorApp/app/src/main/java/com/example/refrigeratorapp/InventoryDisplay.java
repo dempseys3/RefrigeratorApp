@@ -1,7 +1,12 @@
 package com.example.refrigeratorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,14 +18,36 @@ import java.util.ArrayList;
 
 public class InventoryDisplay extends AppCompatActivity {
 
-    private RefrigeratorSQLiteDBHelper refrigeratorDatabase;
-    private ArrayList<Item> allItems = new ArrayList<>();
+    //New Stuff for Recycler View
+    private RefrigeratorSQLiteDBHelper mDatabase;
     private ItemAdapter mAdapter;
+    private ArrayList<InventoryItem> allItems = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_display);
+
+
+        //New Stuff for Recycler View
+        ConstraintLayout CLayout = (ConstraintLayout) findViewById(R.id.activity_to_do);
+        RecyclerView contactView = (RecyclerView)findViewById(R.id.product_list);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        contactView.setLayoutManager(linearLayoutManager);
+        contactView.setHasFixedSize(true);
+        mDatabase = new RefrigeratorSQLiteDBHelper(this);
+        allItems = mDatabase.getInventory();
+
+        if(allItems.size() > 0){
+            contactView.setVisibility(View.VISIBLE);
+            mAdapter = new ItemAdapter(this, allItems);
+            contactView.setAdapter(mAdapter);
+
+        }else {
+            contactView.setVisibility(View.GONE);
+            Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
+        }
 
 
 

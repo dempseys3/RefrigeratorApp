@@ -19,11 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Button displayButton;
 
-    //New Stuff for Recycler View
-    private RefrigeratorSQLiteDBHelper mDatabase;
-    //not sure how to go from list to array
-    private List<InventoryItem> allItems = new ArrayList<>();
-    private ItemAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 openNewActivity();
             }
         });
-
-        //New Stuff for Recycler View
-        ConstraintLayout CLayout = (ConstraintLayout) findViewById(R.id.activity_to_do);
-        RecyclerView contactView = (RecyclerView)findViewById(R.id.product_list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        contactView.setLayoutManager(linearLayoutManager);
-        contactView.setHasFixedSize(true);
-        mDatabase = new RefrigeratorSQLiteDBHelper(this);
-        allItems = mDatabase.getInventory();
-
-        if(allItems.size() > 0){
-            contactView.setVisibility(View.VISIBLE);
-            mAdapter = new ItemAdapter(this, allItems);
-            contactView.setAdapter(mAdapter);
-
-        }else {
-            contactView.setVisibility(View.GONE);
-            Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
-        }
 
     }
 
