@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     //New Stuff for Recycler View
     private RefrigeratorSQLiteDBHelper mDatabase;
     //not sure how to go from list to array
-    private List<String> allItems = new ArrayList<>();
+    private List<InventoryItem> allItems = new ArrayList<>();
     private ItemAdapter mAdapter;
 
     @Override

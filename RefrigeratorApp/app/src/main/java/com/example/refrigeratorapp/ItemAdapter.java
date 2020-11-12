@@ -21,11 +21,11 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     @NonNull
     private Context context;
-    private ArrayList<Item> listItems;
-    private ArrayList<Item> mArrayList;
+    private List<InventoryItem> listItems;
+    private List<InventoryItem> mArrayList;
     private RefrigeratorSQLiteDBHelper refrigeratorDatabase;
 
-    public ItemAdapter(Context context, ArrayList<Item> listItems) {
+    public ItemAdapter(Context context, List<InventoryItem> listItems) {
         this.context = context;
         this.listItems = listItems;
         this.mArrayList=listItems;
@@ -42,8 +42,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        final Item items = listItems.get(position);
-        holder.name.setText(items.getName());
+        final InventoryItem items = listItems.get(position);
+        holder.name.setText(items.getProductName());
 
     }
 
