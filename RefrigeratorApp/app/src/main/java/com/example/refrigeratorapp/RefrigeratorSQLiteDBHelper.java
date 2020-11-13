@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
@@ -69,6 +72,29 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
             data.add(temp);
             res.moveToNext();
         }
+        return data;
+    }
+
+    public ArrayList<InventoryItem> getCloseToExpiry(){
+        Calendar today = Calendar.getInstance();
+        int month = today.get(Calendar.MONTH);
+        month++;
+        int day = today.get(Calendar.DAY_OF_MONTH);
+        int year = today.get(Calendar.YEAR);
+        day+= 3;
+        String date = month + "/" + day + "/" + year;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + INVENTORY_TABLE_NAME + " WHERE " + INVENTORY_COLUMN_EXPIRY_DATE + " = " + date , null);
+        ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
+        while(res.isAfterLast() == false){
+            String productName = res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT));
+            int count = res.getInt(res.getColumnIndex(INVENTORY_COLUMN_COUNT));
+            String expiryDate = res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE));
+            InventoryItem temp = new InventoryItem(productName, count, expiryDate);
+            data.add(temp);
+            res.moveToNext();
+        }
+
         return data;
     }
 }
