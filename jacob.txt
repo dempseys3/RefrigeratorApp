@@ -1,3 +1,4 @@
 committing to this text file
 hopefully this does it
 11/6/2020: Researched fragments for having multiple activities within one screen.
+committing to this text file

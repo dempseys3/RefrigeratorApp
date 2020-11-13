@@ -1,16 +1,9 @@
 package com.example.refrigeratorapp;
 
 import android.annotation.SuppressLint;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class SubmitManager {
 
@@ -25,9 +18,9 @@ public class SubmitManager {
 
 
     public SubmitManager(){
-         setName("name");
-         setQuantity(1);
-         setExpDate("11/11/1111");
+         setName("");
+         setQuantity(0);
+         setExpDate("");
     }
 
     public SubmitManager(TextView nameBox, TextView quantityBox, TextView expBox){
@@ -40,12 +33,9 @@ public class SubmitManager {
     // Removes Item from the itemArray
     // not connected to a button / not used
     public void removeItem(InventoryItem item){
-        for(int i = 0; i < itemArray.size(); i++){
-            if(item.isEqual(itemArray.get(i))){
-                itemArray.remove(i);
-                return;
-            }
-        }
+        //search for item from database
+
+        //remove item from database
     }
 
     @SuppressLint("SetTextI18n")
@@ -55,9 +45,9 @@ public class SubmitManager {
     }
 
     @SuppressLint("SetTextI18n")
-    public void submit() {
-        if (!name.equals("") && !expDate.equals("")) {
-            addItem(getName(), getExpDate(), getQuantity());
+    public void submit(RefrigeratorSQLiteDBHelper db) {
+        if (!getName().equals("") && !getExpDate().equals("") && !(getQuantity()==0)) {
+            db.insertInventory(new InventoryItem(getName(),getQuantity(),getExpDate()));
         }
     }
 
@@ -70,7 +60,7 @@ public class SubmitManager {
     }
 
     public String getExpDate() {
-        return expDate;
+        return this.expDate;
     }
 
     public void setExpDate(String expDate) {
@@ -85,15 +75,4 @@ public class SubmitManager {
         this.quantity = quantity;
     }
 
-//    public Calendar stringToDate(){
-//
-//    }
-
-    public String dateToString(Calendar c){
-        return simpleDateFormat.format(c.getTime());
-    }
-
-    public ArrayList<InventoryItem> getItemArray(){
-        return this.itemArray;
-    }
 }

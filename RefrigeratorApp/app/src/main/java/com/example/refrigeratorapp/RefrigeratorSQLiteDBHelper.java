@@ -38,19 +38,19 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-     boolean insertInventory(InventoryItem data){
+    boolean insertInventory(InventoryItem data){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-         ContentValues cv = new ContentValues();
-         cv.put(INVENTORY_COLUMN_PRODUCT, data.getProductName());
-         cv.put(INVENTORY_COLUMN_COUNT, data.getCount());
-         cv.put(INVENTORY_COLUMN_EXPIRY_DATE, data.getExpiryDate());
+        ContentValues cv = new ContentValues();
+        cv.put(INVENTORY_COLUMN_PRODUCT, data.getProductName());
+        cv.put(INVENTORY_COLUMN_COUNT, data.getCount());
+        cv.put(INVENTORY_COLUMN_EXPIRY_DATE, data.getExpiryDate());
 
-         long insert = sqLiteDatabase.insert(INVENTORY_TABLE_NAME, null, cv);
-         if(insert == -1){
-             return false;
-         }else{
-             return true;
-         }
+        long insert = sqLiteDatabase.insert(INVENTORY_TABLE_NAME, null, cv);
+        if(insert == -1){
+            return false;
+        }else{
+            return true;
+        }
 
     }
 

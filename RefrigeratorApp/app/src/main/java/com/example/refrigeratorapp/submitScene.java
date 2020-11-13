@@ -94,14 +94,14 @@ public class submitScene extends AppCompatActivity {
     // Adds new Item to itemArray and displays success or fail message
     public void addItem(String name, String expDate, int count){
         TextView lastItem = findViewById(R.id.textView3);
-       InventoryItem test = new InventoryItem(name, count, expDate);
-       RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper(submitScene.this);
-       Boolean successful = db.insertInventory(test);
-       if(successful == true) {
-           lastItem.setText(test.getProductName() + " added to fridge");
-       }else{
-           lastItem.setText("Failed to add item");
-       }
+        InventoryItem test = new InventoryItem(name, count, expDate);
+        RefrigeratorSQLiteDBHelper db = new RefrigeratorSQLiteDBHelper(submitScene.this);
+        Boolean successful = db.insertInventory(test);
+        if(successful == true) {
+            lastItem.setText(test.getProductName() + " added to fridge");
+        }else{
+            lastItem.setText("Failed to add item");
+        }
 
     }
 
