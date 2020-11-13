@@ -8,3 +8,6 @@ I also reached out to Dr.Shepherd for his recommendation
 11/8/20
 Dr. Shepherd reccomended using firebase, so I started watching tutorials on how to use it.
 A helpful one I found is: https://www.youtube.com/watch?v=dRYnm_k3w1w
+
+11/13/20
+Finished up Display, need to refine it. I am also continuing to do some research on Firebase
