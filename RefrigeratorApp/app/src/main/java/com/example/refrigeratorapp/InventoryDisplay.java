@@ -12,17 +12,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
 
 public class InventoryDisplay extends AppCompatActivity {
 
-    TextView nameBox;
-    TextView quantityBox;
-    TextView expBox;
+    // EditText boxes that are used to enter item info. Updated in addButton()
+    EditText nameBox;
+    EditText quantityBox;
+    EditText expBox;
 
+    // Instance of SubmitManager
     private SubmitManager sm =  new SubmitManager();
+
     //New Stuff for Recycler View
     private RefrigeratorSQLiteDBHelper mDatabase;
     private ItemAdapter mAdapter;
@@ -80,6 +83,8 @@ public class InventoryDisplay extends AppCompatActivity {
         btn.setVisibility(View.INVISIBLE);
     }
 
+    // Updates the RecyclerView, contactView, with the most recent list from the database.
+    // I just copied and pasted this from the OnCreate method so it may not be very efficient
     public void updateRecycler(){
         allItems = mDatabase.getInventory();
         RecyclerView contactView = (RecyclerView)findViewById(R.id.product_list);
@@ -98,22 +103,35 @@ public class InventoryDisplay extends AppCompatActivity {
 
 
 
-
+    // Called when ADD button is pressed.
     public void addButton(View view){
+        // These are the EditText boxes that the user enters the item info
         nameBox = findViewById(R.id.nameBox);
         quantityBox = findViewById(R.id.QuantityBox);
         expBox = findViewById(R.id.ExpirationBox);
+
+        // If any of the following "set" methods fail because there was no text in the EditText,
+        // it should just close the fragment without submitting anything
         try{
+            // Stores the name, quantity, and expiration date to sm (SubmitManager)
             sm.setName(nameBox.getText().toString());
             sm.setQuantity(Integer.parseInt(quantityBox.getText().toString()));
             sm.setExpDate(expBox.getText().toString());
             sm.submit(mDatabase);
+            // Updates the recyclerView with the new item
             updateRecycler();
+            // Removes the pop-up screen where you can enter item info
             removeFragment();
         }
         catch(Exception e){
+            // Removes the pop-up screen where you can enter item info
             removeFragment();
         }
+
+        // Sets the sm fields back to default to check for unentered fields
+        sm.setExpDate("");
+        sm.setName("");
+        sm.setQuantity(0);
     }
 
 }
