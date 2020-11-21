@@ -4,3 +4,7 @@ Item
 Expiration_date
 Quantity
 Category
+
+Shoping_List
+Item_Num
+Product_Name
