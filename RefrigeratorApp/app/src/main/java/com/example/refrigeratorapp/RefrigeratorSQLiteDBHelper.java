@@ -21,6 +21,9 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
     public static final String INVENTORY_COLUMN_PRODUCT = "product";
     public static final String INVENTORY_COLUMN_COUNT = "date";
     public static final String INVENTORY_COLUMN_EXPIRY_DATE = "expiry_date";
+    public static final String SHOPPING_LIST_TABLE_NAME = "shopping_list";
+    public static final String SHOPPING_LIST_COLUMN_ID = "id";
+    public static final String SHOPPING_LIST_COLUMN_PRODUCT = "product";
 
     public RefrigeratorSQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,6 +36,10 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
                 INVENTORY_COLUMN_PRODUCT + " TEXT, " +
                 INVENTORY_COLUMN_COUNT + " INT, " +
                 INVENTORY_COLUMN_EXPIRY_DATE + " TEXT" + ")");
+
+        sqLiteDatabase.execSQL("CREATE TABLE" + SHOPPING_LIST_TABLE_NAME + " (" +
+                SHOPPING_LIST_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                SHOPPING_LIST_COLUMN_PRODUCT + " TEXT" + ")");
     }
 
     @Override
@@ -65,14 +72,33 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
+            int id = res.getInt(res.getColumnIndex(INVENTORY_COLUMN_ID));
             String productName = res.getString(res.getColumnIndex(INVENTORY_COLUMN_PRODUCT));
             int count = res.getInt(res.getColumnIndex(INVENTORY_COLUMN_COUNT));
             String expiryDate = res.getString(res.getColumnIndex(INVENTORY_COLUMN_EXPIRY_DATE));
-            InventoryItem temp = new InventoryItem(productName, count, expiryDate);
+            InventoryItem temp = new InventoryItem(id, productName, count, expiryDate);
             data.add(temp);
             res.moveToNext();
         }
         return data;
+    }
+
+    public boolean LowerCount(InventoryItem target){
+        //add code to update inventory
+        int newCount = target.getCount();
+        newCount--;
+        if(newCount == 0){
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(SHOPPING_LIST_COLUMN_PRODUCT, target.getProductName());
+            long insert = sqLiteDatabase.insert(SHOPPING_LIST_TABLE_NAME, null, cv);
+            if(insert == -1){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<InventoryItem> getCloseToExpiry(){
