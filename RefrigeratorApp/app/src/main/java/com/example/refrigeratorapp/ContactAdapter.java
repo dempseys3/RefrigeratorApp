@@ -29,6 +29,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
         InventoryItem ci = contactList.get(i);
         contactViewHolder.vName.setText(ci.getProductName());
+        contactViewHolder.vExp.setText("Expiry Date: " + ci.getExpiryDate());
+        contactViewHolder.vQuant.setText("Quantity: " +ci.getCount());
 
 
 
@@ -46,12 +48,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView vName;
-
+        protected TextView vExp;
+        protected TextView vQuant;
 
         public ContactViewHolder(View v) {
             super(v);
             vName =  (TextView) v.findViewById(R.id.title);
-
+            vExp = (TextView) v.findViewById(R.id.expiry);
+            vQuant = (TextView) v.findViewById(R.id.quantity);
         }
     }
 }
