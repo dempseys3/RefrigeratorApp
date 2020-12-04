@@ -35,12 +35,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    // Starts activity in which user can add to and view the contents of the fridge
-    public void goToSubmit(View view){
-        Intent intent = new Intent(MainActivity.this, submitScene.class);
-        startActivity(intent);
-    }
     
     //Code to open page with inventory
     public void openNewActivity(){
