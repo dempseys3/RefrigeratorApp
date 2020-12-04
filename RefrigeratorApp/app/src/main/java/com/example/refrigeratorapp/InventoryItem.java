@@ -16,6 +16,7 @@ public class InventoryItem {
         return productName;
     }
 
+
     int getCount(){
         return count;
     }
