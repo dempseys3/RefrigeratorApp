@@ -11,3 +11,6 @@ A helpful one I found is: https://www.youtube.com/watch?v=dRYnm_k3w1w
 
 11/13/20
 Finished up Display, need to refine it. I am also continuing to do some research on Firebase
+
+12/4/20
+Continuing to watch tutorials on firebase
