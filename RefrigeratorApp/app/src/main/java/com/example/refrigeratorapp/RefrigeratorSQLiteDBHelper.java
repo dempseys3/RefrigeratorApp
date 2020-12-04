@@ -110,6 +110,12 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void RemoveFromShoppingList(String productName){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.execSQL("DELETE FROM " + SHOPPING_LIST_TABLE_NAME + " WHERE " +
+                SHOPPING_LIST_COLUMN_PRODUCT + " = "  + productName);
+    }
+
     public ArrayList<InventoryItem> getCloseToExpiry(){
         Calendar today = Calendar.getInstance();
         int month = today.get(Calendar.MONTH);
