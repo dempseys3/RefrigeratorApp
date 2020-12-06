@@ -89,16 +89,11 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
 
         if(newCount <= 0){
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            cv.put(SHOPPING_LIST_COLUMN_PRODUCT, target.getProductName());
+
             sqLiteDatabase.execSQL("DELETE FROM " + INVENTORY_TABLE_NAME + " WHERE " +
                     INVENTORY_COLUMN_ID + " = " + target.getId());
-            long insert = sqLiteDatabase.insert(SHOPPING_LIST_TABLE_NAME, null, cv);
-            if(insert == -1){
-                return false;
-            }else{
-                return true;
-            }
+            boolean isSuccessful = InsertIntoShoppingList(target.getProductName());
+            return  isSuccessful;
         }else {
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
             sqLiteDatabase.execSQL("UPDATE " + INVENTORY_TABLE_NAME + " SET " +
@@ -134,6 +129,19 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
         }
         return data;
 
+    }
+
+    public boolean InsertIntoShoppingList(String product){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(SHOPPING_LIST_COLUMN_PRODUCT, product);
+
+        long insert = sqLiteDatabase.insert(SHOPPING_LIST_TABLE_NAME, null, cv);
+        if(insert == -1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public ArrayList<InventoryItem> getCloseToExpiry(){
