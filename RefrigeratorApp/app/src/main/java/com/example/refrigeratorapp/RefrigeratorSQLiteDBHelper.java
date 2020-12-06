@@ -116,6 +116,26 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
                 SHOPPING_LIST_COLUMN_PRODUCT + " = "  + productName);
     }
 
+    public ArrayList<InventoryItem> getShoppingList(){
+        ArrayList<InventoryItem> data = new ArrayList<InventoryItem>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from " + SHOPPING_LIST_TABLE_NAME, null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            int id = res.getInt(res.getColumnIndex(SHOPPING_LIST_COLUMN_ID));
+            String productName = res.getString(res.getColumnIndex(SHOPPING_LIST_COLUMN_PRODUCT));
+            int count = 1;
+            String expiryDate = "";
+            InventoryItem temp = new InventoryItem(id, productName, count, expiryDate);
+            data.add(temp);
+            res.moveToNext();
+        }
+        return data;
+
+    }
+
     public ArrayList<InventoryItem> getCloseToExpiry(){
         Calendar today = Calendar.getInstance();
         int month = today.get(Calendar.MONTH);
