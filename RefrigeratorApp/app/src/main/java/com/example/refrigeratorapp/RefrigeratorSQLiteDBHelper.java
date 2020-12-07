@@ -84,7 +84,6 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     public boolean LowerCount(InventoryItem target, int useAmount){
-        //add code to update inventory
         int newCount = target.getCount() - useAmount;
 
         if(newCount <= 0){
