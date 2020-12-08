@@ -1,8 +1,11 @@
 Database
-Refrigerator_Inventory
-Item
-Expiration_date
-Quantity
-Category
+	Refrigerator_Inventory
+		id
+		product_name
+		Expiration_date
+		Quantity
+	Shopping_List
+		id
+		product_name	
 
-Coming up with more functions for the database
+researching making items clickable in list
