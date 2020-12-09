@@ -39,8 +39,6 @@ public class InventoryDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory_display);
 
-
-
         RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
