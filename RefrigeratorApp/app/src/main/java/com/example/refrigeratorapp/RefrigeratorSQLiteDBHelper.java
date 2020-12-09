@@ -130,6 +130,11 @@ public class RefrigeratorSQLiteDBHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean MoveFromShoppingListToInventory(InventoryItem product){
+        RemoveFromShoppingList(product.getProductName());
+        return insertInventory(product);
+    }
+
     public boolean InsertIntoShoppingList(String product){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
