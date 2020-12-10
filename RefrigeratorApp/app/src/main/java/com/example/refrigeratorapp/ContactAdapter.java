@@ -2,12 +2,9 @@ package com.example.refrigeratorapp;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -36,11 +33,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         contactViewHolder.vQuant.setText("Quantity: " +ci.getCount());
 
 
-
     }
-
-
-
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -49,8 +42,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 inflate(R.layout.card_view_activity, viewGroup, false);
 
         return new ContactViewHolder(itemView);
-
-
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {

@@ -53,20 +53,20 @@ tools:context=".InventoryDisplay">
         app:layout_constraintTop_toTopOf="parent" >
 
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/ADD_BUTTON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="addButton"
+            android:text="ADD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainer"
+            tools:visibility="invisible" />
 
-    <Button
-        android:id="@+id/ADD_BUTTON"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:onClick="addButton"
-        android:text="ADD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainer"
-        tools:visibility="invisible" />
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/imageButton2"

@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -58,29 +60,11 @@ public class InventoryDisplay extends AppCompatActivity {
 
         }else {
             recList.setVisibility(View.GONE);
-            Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "There is no item in the inventory. Start adding now", Toast.LENGTH_LONG).show();
         }
 
         findViewById(R.id.ADD_BUTTON).setVisibility(View.INVISIBLE);
-        //New Stuff for Recycler View
-        //ConstraintLayout CLayout = (ConstraintLayout) findViewById(R.id.activity_to_do);
-        /*RecyclerView contactView = (RecyclerView)findViewById(R.id.product_list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        contactView.setLayoutManager(linearLayoutManager);
-        contactView.setHasFixedSize(true);
-        mDatabase = new RefrigeratorSQLiteDBHelper(this);
-        allItems = mDatabase.getInventory();
 
-        if(allItems.size() > 0){
-            contactView.setVisibility(View.VISIBLE);
-            mAdapter = new ItemAdapter(this, allItems);
-            contactView.setAdapter(mAdapter);
-
-
-        }else {
-            contactView.setVisibility(View.GONE);
-            Toast.makeText(this, "There is no contact in the database. Start adding now", Toast.LENGTH_LONG).show();
-        }*/
 
     }
 
@@ -126,7 +110,6 @@ public class InventoryDisplay extends AppCompatActivity {
     }
 
 
-
     // Called when ADD button is pressed.
     public void addButton(View view){
         // These are the EditText boxes that the user enters the item info
@@ -157,5 +140,6 @@ public class InventoryDisplay extends AppCompatActivity {
         sm.setName("");
         sm.setQuantity(0);
     }
+
 
 }
